@@ -1,29 +1,122 @@
-# 2525---PROGRAMACION-ORIENTADA-A-OBJETOS-D----UEA-L-UFB-030
-Este repositorio contiene el código fuente desarrollado durante la asignatura **Programación Orientada a Objetos**, impartida en la **Universidad Estatal Amazónica**. Está diseñado como un recurso de apoyo para estudiantes y profesionales interesados en conceptos y prácticas de programación orientada a objetos.
+# 2525POO_DIANA_MENENDEZ
+LUNA
+clase Personaje:
 
-## Información de la asignatura
+    definición __init__(ser,nombre,fuerza,inteligencia,defensa,vida):
+        ser.nombre = nombre
+        ser.fuerza = fuerza
+        ser.inteligencia = inteligencia
+        ser.defensa = defensa
+        ser.vida = vida
 
-- **Institución**: Universidad Estatal Amazónica (UEA)  
-- **Carrera**: Ingeniería en Tecnologías de la Información y Comunicación  
-- **Asignatura**: Programación Orientada a Objetos (UEA-L-UFB-030)  
-- **Docente**: Ing. Walter Núñez Zamora, Mgs.
+    definición Atributos(ser):
+        imprimir(ser.nombre,":",sep="")
+        imprimir("·Fuerza:",ser.fuerza)
+        imprimir("·Inteligencia:",ser.inteligencia)
+        imprimir("·Defensa:",ser.defensa)
+        imprimir("·Vida:",ser.vida)
 
-## Contenido del repositorio
+    definición subir_nivel(ser,fuerza,inteligencia,defensa):
+        ser.fuerza = ser.fuerza + fuerza
+        ser.inteligencia = ser.inteligencia + inteligencia
+        ser.defensa = ser.defensa + defensa
 
-Este repositorio incluye:
-1. Ejercicios prácticos de programación orientada a objetos.
-2. Ejemplos de implementación en Python.
-3. Proyectos desarrollados como parte de las actividades de la asignatura.
-4. Documentación y apuntes adicionales para reforzar el aprendizaje.
+    definición esta_vivo(ser):clase Personaje:
 
-## Objetivos
+    definición __init__(ser,nombre,fuerza,inteligencia,defensa,vida):
+        ser.nombre = nombre
+        ser.fuerza = fuerza
+        ser.inteligencia = inteligencia
+        ser.defensa = defensa
+        ser.vida = vida
 
-- Aplicar los principios fundamentales de la programación orientada a objetos.
-- Desarrollar soluciones eficientes y estructuradas utilizando Python.
-- Familiarizarse con conceptos como clases, objetos, herencia, polimorfismo y encapsulamiento.
+    definición Atributos(ser):
+        imprimir(ser.nombre,":",sep="")
+        imprimir("·Fuerza:",ser.fuerza)
+        imprimir("·Inteligencia:",ser.inteligencia)
+        imprimir("·Defensa:",ser.defensa)
+        imprimir("·Vida:",ser.vida)
 
-## Instrucciones para el uso
+    definición subir_nivel(ser,fuerza,inteligencia,defensa):
+        ser.fuerza = ser.fuerza + fuerza
+        ser.inteligencia = ser.inteligencia + 
+        devolver ser.vida > 0
 
-1. Clona el repositorio:  
-   ```bash
-   git clone https://github.com/<tu-usuario>/2425-POO-UEA.git
+    definición morir(ser):
+        ser.vida = 0
+        imprimir(ser.nombre,"ha muerto")
+
+    definición daño(ser,enemigo):
+        devolver ser.fuerza - enemigo.defensa
+
+    definición atacar(ser,enemigo):
+        daño = ser.daño(enemigo)
+        enemigo.vida = enemigo.vida - daño
+        imprimir(ser.nombre,"ha realizado",daño,"puntos de daño a",enemigo.nombre)
+        si enemigo.esta_vivo():
+            imprimir("Vida de",enemigo.nombre,"es",enemigo.vida)
+        demás:
+            enemigo.morir()
+
+
+clase Guerrero(Personaje):
+
+    definición __init__(ser,nombre,fuerza,inteligencia,defensa,vida,espada):
+        súper().__init__(nombre,fuerza,inteligencia,defensa,vida)
+        ser.espada = espada
+
+    definición cambiar_arma(ser):
+        opción = entero(aporte("Elige un arma: (1) Acero Valyrio, daño 8. (2) Matadragones, daño 10"))
+        si opción == 1:
+            ser.espada = 8
+        Elif opción == 2:
+            ser.espada = 10
+        demás:
+            imprimir(Número de arma incorrecto)
+
+    definición Atributos(ser):
+        súper().Atributos()
+        imprimir("·Espada:",ser.espada)
+
+    definición daño(ser,enemigo):
+        devolver ser.fuerza * ser.espada - enemigo.defensa
+
+
+clase Mago(Personaje):
+
+    definición __init__(ser,nombre,fuerza,inteligencia,defensa,vida,libro):
+        súper().__init__(nombre,fuerza,inteligencia,defensa,vida)
+        ser.libro = libro
+
+    definición Atributos(ser):
+        súper().Atributos()
+        imprimir("·Libro:",ser.libro)
+
+    definición daño(ser,enemigo):
+        devolver ser.inteligencia * ser.libro - enemigo.defensa
+
+
+definición combate(jugador_1,jugador_2):
+    turno = 0
+    mientras jugador_1.esta_vivo()y jugador_2.esta_vivo():
+        imprimir("\norteTurno",turno)
+        imprimir(">>> Acción de ",jugador_1.nombre,":",sep="")
+        jugador_1.atacar(jugador_2)
+        imprimir(">>> Acción de ",jugador_2.nombre,":",sep="")
+        jugador_2.atacar(jugador_1)
+        turno = turno + 1
+    si jugador_1.esta_vivo():
+        imprimir("\norte"Ha ganado",jugador_1.nombre)
+    Elif jugador_2.esta_vivo():
+        imprimir("\norte"Ha ganado",jugador_2.nombre)
+    demás:
+        imprimir("\norteEmpate")
+
+
+personaje_1 = Guerrero("Vísceras",20,10,4,100,4)
+personaje_2 = Mago("Vanessa",5,15,4,100,3)
+
+personaje_1.Atributos()
+personaje_2.Atributos()
+
+combate(personaje_1,personaje_2)
